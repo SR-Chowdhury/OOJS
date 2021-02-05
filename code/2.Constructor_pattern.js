@@ -1,3 +1,11 @@
+/**************************
+* Bismillahir Rahmanir Rahim
+* OOJS T-02
+* Constructor Pattern in JS
+* Author : Shihan Chowdhury
+* Thanks to - Twinkle Cats 
+**************************/
+
 // Why we should use Class? 
 var multyObj = [
     {
