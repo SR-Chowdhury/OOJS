@@ -21,7 +21,7 @@ var personObj = {
     print: function() {
         console.log(this.name + ', From: ' + this.country);
     }
-}properties
+}
 console.log(personObj);
 
 personObj.print();
