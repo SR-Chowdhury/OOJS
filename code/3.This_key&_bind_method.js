@@ -1,7 +1,7 @@
 /**************************
 * Bismillahir Rahmanir Rahim
 * OOJS T-03
-* This Key & Blind in JS
+* This Key & Bind in JS
 * Author : Shihan Chowdhury
 * Thanks to - Twinkle Cats 
 **************************/
