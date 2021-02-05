@@ -1,3 +1,12 @@
+/**************************
+* Bismillahir Rahmanir Rahim
+* OOJS T-03
+* This Key & Blind in JS
+* Author : Shihan Chowdhury
+* Thanks to - Twinkle Cats 
+**************************/
+
+
 var obj = {
     name: "Shihan",
     print: function() {
@@ -5,6 +14,7 @@ var obj = {
     }
 }
 obj.print();
+// Hello, Shihan
 
 
 function myFunc() {
@@ -17,6 +27,7 @@ function myFunc1() {
     function inner() {
         console.log(this);
         // Here 'this' will also print window object
+        // Because 'this' key only works in an object
     }
     inner();
 }
@@ -27,7 +38,7 @@ function myFunc2() {
         console.log(this);
     }
     new inner1();
-    // Now it well print 'inner1 obj' because here new create an object
+    // Now it well print 'inner1 obj' because here 'new' create an object
 }
 myFunc2();
 
@@ -37,21 +48,18 @@ var obj1 = {
         console.log(this);
         // Upper console will print a window object
         console.log('hello, ' + this.name);
-        //2. Upper console will print - hello, undefined. To fix this problem we need bind method
     }
 }
-var name = obj1.name;
-name;
+
 obj1.print();
 //1. this will print- hello, Shakib
 
 var fun = obj1.print;
-//2. here we store print function into a value so we can't use this keyword
-console.log(fun);
-fun();
+console.log(fun());
+//2. Upper console will print - hello, undefined. To fix this problem we need bind method
 
 
-// So now we are fixing this issu by using bind method
+// So now we are fixing this issu by using 'bind' method
 
 var obj2 = {
     name: "Mash",
@@ -60,20 +68,19 @@ var obj2 = {
     }
 }
 var fun2 = obj2.print.bind(obj2);
-fun2();
-// Output: hello, Mash
+fun2(); // hello, Mash
 
 function add(num) {
-    console.log(num);
-    return this.value + num;
+    console.log(num); // 100
+    return num + this.value;
 }
 var addObj = {
     value: 20
 }
 var binded = add.bind(addObj);
 var result = binded(100);
-result;
-// Output: 120
+result; // 120
+
 
 var obj3 = {
     name : "Tamim",
@@ -95,8 +102,8 @@ var obj4 = {
     }
 }
 obj4.print();
-// Output: Hello, undefined because of obj4 has a method (print) which has also a function. So that in setTimeout scope 
-// this keyword will not work.
+// Output: Hello, undefined because of obj4 has a method (print) which has also a setTimeout function. 
+// So that in setTimeout scope 'this' keyword take window object.
 
 var obj5 = {
     name : "Tamim",
@@ -108,3 +115,25 @@ var obj5 = {
 }
 obj5.print();
 // Output: Hello, Tamim. Now its working because of we are now using bind method
+
+//Difference Between Funciton And Method
+var User = {
+    name: 'MUHAMMAD',
+    printMethod: function() {
+        console.log(this.name); //MUHAMMAD
+    },
+    printFun: function() {
+        setTimeout(function() {
+            console.log(this.name);// undifined; so we can fix usin bind that are applying in printFinal Method
+        }, 2000);
+        // Because of setTimeout is an innerfunction of that's why in this scope 'this' key will take 'Window object'
+    },
+    printFinal: function() {
+        setTimeout(function() {
+            console.log(this.name);// MUHAMMAD
+        }.bind(User), 2000);
+    }
+}
+User.printMethod();
+User.printFun();
+User.printFinal();
